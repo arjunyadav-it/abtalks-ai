@@ -1,16 +1,56 @@
-# React + Vite
+# ABTalks AI 🤖
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ABTalks AI is an interactive AI conversation platform designed to help users explore ideas, questions, stories, relationships, career thoughts and everyday problems through meaningful AI conversations.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🤖 AI-powered conversations
+- 💬 Ask questions in natural language
+- ⚡ Fast AI responses
+- 🧠 Thoughtful and conversational answers
+- 🔄 Multiple questions in a session
+- ⌨️ Press Enter to ask questions
+- 📝 Shift + Enter for a new line
+- 🔐 API key protected using environment variables
+- 📱 Clean and responsive interface
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
 
-## Expanding the ESLint configuration
+### Backend
+- Node.js
+- Express.js
+- CORS
+- dotenv
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### AI
+- Google Gemini API
+
+## 📂 Project Structure
+
+```text
+abtalks-ai/
+│
+├── public/
+├── src/
+│   ├── assets/
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Explore.jsx
+│   │   └── Talk.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+│
+├── .env
+├── .gitignore
+├── server.js
+├── package.json
+└── README.md
