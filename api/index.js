@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
-
-dotenv.config();
 
 const app = express();
 
@@ -20,7 +17,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/api/ai", async (req, res) => {
+app.post("/ai", async (req, res) => {
   try {
     const { question, history = [] } = req.body;
 
@@ -33,7 +30,6 @@ app.post("/api/ai", async (req, res) => {
     console.log("User question:", question);
     console.log("History length:", history.length);
 
-    // Convert frontend history to Gemini chat history
     const geminiHistory = [];
 
     for (const item of history) {
@@ -58,7 +54,6 @@ app.post("/api/ai", async (req, res) => {
       }
     }
 
-    // Create a Gemini conversation with previous history
     const chat = ai.chats.create({
       model: "gemini-3.6-flash",
 
@@ -74,16 +69,14 @@ app.post("/api/ai", async (req, res) => {
       },
     });
 
-    // Send current question
     const response = await chat.sendMessage({
       message: question.trim(),
     });
 
-    console.log("AI response received");
-
     res.json({
       answer: response.text || "No response received.",
     });
+
   } catch (error) {
     console.error("Gemini Error:", error);
 
@@ -92,13 +85,5 @@ app.post("/api/ai", async (req, res) => {
     });
   }
 });
-
-const PORT = process.env.PORT || 3001;
-
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`AI server running on http://localhost:${PORT}`);
-  });
-}
 
 export default app;
