@@ -4,9 +4,10 @@ import {
   Heart,
   Play,
   Clock3,
-  ArrowLeft
+  ArrowLeft,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+
 
 const conversations = [
   {
@@ -16,8 +17,9 @@ const conversations = [
     category: "Mind",
     duration: "48 min",
     image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     id: 2,
     guest: "Robert Greene",
@@ -25,8 +27,9 @@ const conversations = [
     category: "Success",
     duration: "56 min",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     id: 3,
     guest: "Nour Arida",
@@ -34,8 +37,9 @@ const conversations = [
     category: "Life",
     duration: "42 min",
     image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     id: 4,
     guest: "Lewis Howes",
@@ -43,8 +47,9 @@ const conversations = [
     category: "Relationships",
     duration: "51 min",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     id: 5,
     guest: "Jay Shetty",
@@ -52,8 +57,9 @@ const conversations = [
     category: "Success",
     duration: "44 min",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85"
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     id: 6,
     guest: "Dr. Gabor Maté",
@@ -61,23 +67,26 @@ const conversations = [
     category: "Mind",
     duration: "59 min",
     image:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=900&q=85"
-  }
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=900&q=85",
+  },
 ];
+
 
 const categories = [
   "All",
   "Mind",
   "Success",
   "Life",
-  "Relationships"
+  "Relationships",
 ];
+
 
 function Explore() {
 
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
   const [saved, setSaved] = useState([]);
+
 
   function toggleSave(id) {
     setSaved((current) =>
@@ -87,22 +96,28 @@ function Explore() {
     );
   }
 
+
   const filteredConversations = conversations.filter((talk) => {
 
+    const searchText = search.toLowerCase();
+
     const matchesSearch =
-      talk.title.toLowerCase().includes(search.toLowerCase()) ||
-      talk.guest.toLowerCase().includes(search.toLowerCase());
+      talk.title.toLowerCase().includes(searchText) ||
+      talk.guest.toLowerCase().includes(searchText) ||
+      talk.category.toLowerCase().includes(searchText);
 
     const matchesCategory =
-      category === "All" || talk.category === category;
+      category === "All" ||
+      talk.category === category;
 
     return matchesSearch && matchesCategory;
   });
 
-  return (
-    <div className="explore-page">
 
-      {/* HEADER */}
+  return (
+    <main className="explore-page">
+
+      {/* ================= HEADER ================= */}
 
       <section className="explore-header">
 
@@ -118,7 +133,7 @@ function Explore() {
         <h1>
           Explore
           <br />
-          <i>conversations.</i>
+          <span>conversations.</span>
         </h1>
 
         <p className="explore-description">
@@ -129,17 +144,17 @@ function Explore() {
       </section>
 
 
-      {/* SEARCH */}
+      {/* ================= SEARCH ================= */}
 
       <section className="explore-controls">
 
         <div className="search-box">
 
-          <Search size={19} />
+          <Search size={18} />
 
           <input
             type="text"
-            placeholder="Search guests, topics or conversations..."
+            placeholder="Search guests, topics..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -170,7 +185,7 @@ function Explore() {
       </section>
 
 
-      {/* RESULTS */}
+      {/* ================= RESULTS ================= */}
 
       <section className="conversation-section">
 
@@ -189,117 +204,151 @@ function Explore() {
         </div>
 
 
-        <div className="conversation-grid">
+        {/* Conversation Cards */}
 
-          {filteredConversations.map((talk) => (
+        {filteredConversations.length > 0 && (
 
-            <article
-              className="conversation-card"
-              key={talk.id}
-            >
+          <div className="conversation-grid">
 
-              <div className="card-image">
+            {filteredConversations.map((talk) => (
 
-                <img
-                  src={talk.image}
-                  alt={talk.guest}
-                />
+              <article
+                className="conversation-card"
+                key={talk.id}
+              >
 
-                <div className="image-overlay"></div>
+                {/* IMAGE */}
 
-                <button
-                  className={
-                    saved.includes(talk.id)
-                      ? "save-btn saved"
-                      : "save-btn"
-                  }
-                  onClick={() => toggleSave(talk.id)}
-                >
-                  <Heart
-                    size={17}
-                    fill={
-                      saved.includes(talk.id)
-                        ? "currentColor"
-                        : "none"
-                    }
+                <div className="card-image">
+
+                  <img
+                    src={talk.image}
+                    alt={talk.guest}
                   />
-                </button>
 
-                <button className="card-play">
-                  <Play size={18} fill="currentColor" />
-                </button>
-
-                <span className="duration">
-                  <Clock3 size={13} />
-                  {talk.duration}
-                </span>
-
-              </div>
+                  <div className="image-overlay"></div>
 
 
-              <div className="card-content">
+                  {/* Save */}
 
-                <p className="card-category">
-                  {talk.category}
-                </p>
+                  <button
+                    className={
+                      saved.includes(talk.id)
+                        ? "save-btn saved"
+                        : "save-btn"
+                    }
+                    onClick={() => toggleSave(talk.id)}
+                    aria-label="Save conversation"
+                  >
 
-                <h2>
-                  {talk.title}
-                </h2>
+                    <Heart
+                      size={17}
+                      fill={
+                        saved.includes(talk.id)
+                          ? "currentColor"
+                          : "none"
+                      }
+                    />
 
-                <p className="guest">
-                  With <strong>{talk.guest}</strong>
-                </p>
+                  </button>
 
-                <Link
-                  to={`/talk/${talk.id}`}
-                  className="card-link"
-                >
-                  Enter conversation →
-                </Link>
 
-              </div>
+                  {/* Play */}
 
-            </article>
+                  <Link
+                    to={`/talk/${talk.id}`}
+                    className="card-play"
+                    aria-label="Open conversation"
+                  >
+                    <Play
+                      size={18}
+                      fill="currentColor"
+                    />
+                  </Link>
 
-          ))}
 
-        </div>
+                  {/* Duration */}
 
+                  <span className="duration">
+
+                    <Clock3 size={13} />
+
+                    {talk.duration}
+
+                  </span>
+
+                </div>
+
+
+                {/* CONTENT */}
+
+                <div className="card-content">
+
+                  <p className="card-category">
+                    {talk.category}
+                  </p>
+
+                  <h2>
+                    {talk.title}
+                  </h2>
+
+                  <p className="guest">
+                    With <strong>{talk.guest}</strong>
+                  </p>
+
+                  <Link
+                    to={`/talk/${talk.id}`}
+                    className="card-link"
+                  >
+                    Enter conversation →
+                  </Link>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
+        )}
+
+
+        {/* ================= EMPTY STATE ================= */}
 
         {filteredConversations.length === 0 && (
 
-  <div className="empty-state">
+          <div className="empty-explore">
 
-    <Search size={30} />
+            <Search size={32} />
 
-    <h2>
-      No conversations found
-    </h2>
+            <h2>
+              No conversations found
+            </h2>
 
-    <p>
-      Try another guest, topic or category.
-    </p>
+            <p>
+              Try another guest, topic or category.
+            </p>
 
-    <button
-      className="primary-btn"
-      onClick={() => {
-        setSearch("");
-        setCategory("All");
-      }}
-      style={{ marginTop: "25px" }}
-    >
-      Clear filters
-    </button>
+            <button
+              className="primary-btn"
+              onClick={() => {
+                setSearch("");
+                setCategory("All");
+              }}
+            >
+              Clear filters
+            </button>
 
-  </div>
+          </div>
 
-)}
+        )}
 
       </section>
 
-    </div>
+    </main>
   );
 }
+
 
 export default Explore;
