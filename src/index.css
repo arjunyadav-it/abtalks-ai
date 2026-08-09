@@ -3805,3 +3805,483 @@ footer small {
   }
 
 }
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+  /* Navbar */
+  nav {
+    padding: 14px 16px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+
+  /* Hero */
+  .hero {
+    padding: 80px 20px 50px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 70px);
+    line-height: 0.95;
+  }
+
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero-buttons a,
+  .hero-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-meta {
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 10px;
+  }
+
+
+  /* Intro */
+  .intro {
+    padding: 70px 20px;
+  }
+
+  .intro h2 {
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .intro-text {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+
+  /* Feature */
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 50px 20px;
+  }
+
+  .feature-image {
+    min-height: 280px;
+  }
+
+  .feature-content h2 {
+    font-size: 40px;
+  }
+
+
+  /* Explore */
+  .explore-header {
+    padding: 50px 20px 30px;
+  }
+
+  .explore-header h1 {
+    font-size: 52px;
+    line-height: 0.95;
+  }
+
+  .explore-description {
+    font-size: 15px;
+  }
+
+  .explore-controls {
+    padding: 20px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .categories {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+
+  .category {
+    flex-shrink: 0;
+  }
+
+  .conversation-grid {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+
+  /* Talk / AI */
+  .talk-heading {
+    padding: 50px 20px 25px;
+  }
+
+  .talk-heading h1 {
+    font-size: 48px;
+    line-height: 0.95;
+  }
+
+  .talk-description {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .ai-card {
+    margin: 20px;
+  }
+
+  .conversation-area {
+    min-height: 300px;
+  }
+
+  .input-area {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-area textarea {
+    width: 100%;
+    min-height: 90px;
+  }
+
+  .input-area button {
+    width: 100%;
+  }
+
+
+  /* Dashboard */
+  .dashboard {
+    padding: 40px 20px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Footer */
+  footer {
+    padding: 50px 20px 30px;
+  }
+
+}
+/* =========================================
+   ABTALKS — UI POLISH
+========================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+a {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: #ed1b2f;
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-2px);
+  border-color: #ed1b2f;
+  color: #ed1b2f;
+}
+
+.theme-btn:hover,
+.profile-btn:hover {
+  transform: translateY(-3px);
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-content {
+  animation: heroAppear 0.8s ease both;
+}
+
+@keyframes heroAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero h1 i,
+.intro h2 i,
+.feature-content h2 i {
+  display: inline-block;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.conversation-card {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.conversation-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(237, 27, 47, 0.45);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.card-image {
+  overflow: hidden;
+}
+
+.card-image img {
+  transition: transform 0.5s ease;
+}
+
+.conversation-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-play {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.conversation-card:hover .card-play {
+  transform: scale(1.08);
+}
+
+.save-btn:hover {
+  transform: scale(1.1);
+}
+
+
+/* =========================================
+   EXPLORE SEARCH
+========================================= */
+
+.search-box {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.search-box:focus-within {
+  border-color: rgba(237, 27, 47, 0.7);
+  box-shadow: 0 0 0 3px rgba(237, 27, 47, 0.08);
+}
+
+.category {
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.category:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   AI TALK
+========================================= */
+
+.ai-card {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ai-card:focus-within {
+  border-color: rgba(237, 27, 47, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.input-area textarea {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.input-area textarea:focus {
+  outline: none;
+  border-color: #ed1b2f;
+  box-shadow: 0 0 0 3px rgba(237, 27, 47, 0.08);
+}
+
+.input-area button:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loader {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+  color: inherit;
+}
+
+.explore-link,
+.card-link,
+.back-link {
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.explore-link:hover,
+.card-link:hover,
+.back-link:hover {
+  color: #ed1b2f;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   RED SELECTION
+========================================= */
+
+::selection {
+  background: #ed1b2f;
+  color: #fff;
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
